@@ -1,1 +1,330 @@
-<
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Professional portfolio of Your Name" />
+  <title>Your Name — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Skip link -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Header / Navigation -->
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="#">
+        <span class="brand__logo" aria-hidden="true">◆</span>
+        <span class="brand__text">Your Name</span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Toggle navigation">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+
+      <nav id="nav" class="nav" aria-label="Primary">
+        <ul class="nav__list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" aria-label="Introduction">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <h1 class="hero__title">Hi, I'm Your Name</h1>
+          <p class="hero__subtitle">I build clean, scalable, and human-centered digital products.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#projects">View my work</a>
+            <a class="btn btn--ghost" href="#contact">Get in touch</a>
+          </div>
+          <ul class="hero__meta">
+            <li><strong>Location:</strong> Casablanca-Settat, Morocco</li>
+            <li><strong>Role:</strong> Frontend Engineer</li>
+            <li><strong>Focus:</strong> UX Engineering, Performance</li>
+          </ul>
+        </div>
+        <div class="hero__media" aria-hidden="true">
+          <!-- Replace with your photo -->
+          <div class="avatar">
+            <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=600&auto=format&fit=crop" alt="Portrait of Your Name" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section">
+      <div class="container">
+        <h2>About</h2>
+        <div class="grid grid--2">
+          <div>
+            <p>
+              I'm a software engineer specializing in building accessible, performant web applications. I care about thoughtful UX, maintainable systems, and clear communication.
+            </p>
+            <p>
+              I’ve shipped features across startups and enterprises, mentored teammates, and contributed to open-source. My toolkit blends design sense with engineering rigor.
+            </p>
+          </div>
+          <div class="card card--info">
+            <ul class="list list--meta">
+              <li><strong>Current:</strong> Senior Frontend Engineer @ Company</li>
+              <li><strong>Education:</strong> BSc in Computer Science</li>
+              <li><strong>Interests:</strong> Web performance, Design systems</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section section--alt">
+      <div class="container">
+        <h2>Skills</h2>
+        <div class="skills">
+          <div class="skill">
+            <div class="skill__header">
+              <span class="skill__name">JavaScript / TypeScript</span>
+              <span class="skill__level">Expert</span>
+            </div>
+            <div class="progress" aria-label="JavaScript skill level">
+              <div class="progress__bar" style="width: 90%"></div>
+            </div>
+          </div>
+
+          <div class="skill">
+            <div class="skill__header">
+              <span class="skill__name">React / Next.js</span>
+              <span class="skill__level">Advanced</span>
+            </div>
+            <div class="progress" aria-label="React skill level">
+              <div class="progress__bar" style="width: 85%"></div>
+            </div>
+          </div>
+
+          <div class="skill">
+            <div class="skill__header">
+              <span class="skill__name">CSS / Design Systems</span>
+              <span class="skill__level">Advanced</span>
+            </div>
+            <div class="progress" aria-label="CSS skill level">
+              <div class="progress__bar" style="width: 85%"></div>
+            </div>
+          </div>
+
+          <div class="skill">
+            <div class="skill__header">
+              <span class="skill__name">Node.js</span>
+              <span class="skill__level">Intermediate</span>
+            </div>
+            <div class="progress" aria-label="Node skill level">
+              <div class="progress__bar" style="width: 70%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h2>Projects</h2>
+
+        <!-- Filters -->
+        <div class="filters" role="group" aria-label="Project filters">
+          <button class="chip is-active" data-filter="all">All</button>
+          <button class="chip" data-filter="frontend">Frontend</button>
+          <button class="chip" data-filter="backend">Backend</button>
+          <button class="chip" data-filter="design">Design</button>
+        </div>
+
+        <div class="grid grid--3 projects">
+          <article class="project-card" data-tags="frontend design">
+            <img class="project-card__img" src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?q=80&w=800&auto=format&fit=crop" alt="Dashboard project thumbnail" />
+            <div class="project-card__body">
+              <h3 class="project-card__title">Analytics Dashboard</h3>
+              <p class="project-card__desc">A modular dashboard with real-time charts, accessible components, and theming.</p>
+              <div class="project-card__meta">
+                <span class="tag">React</span>
+                <span class="tag">D3</span>
+                <span class="tag">Design System</span>
+              </div>
+              <div class="project-card__actions">
+                <a class="btn btn--sm" href="#" aria-label="View live demo of Analytics Dashboard">Live</a>
+                <a class="btn btn--sm btn--ghost" href="#" aria-label="View source code of Analytics Dashboard">Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-tags="backend">
+            <img class="project-card__img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop" alt="API project thumbnail" />
+            <div class="project-card__body">
+              <h3 class="project-card__title">Payments API</h3>
+              <p class="project-card__desc">Secure, rate-limited API with OpenAPI docs, testing, and observability.</p>
+              <div class="project-card__meta">
+                <span class="tag">Node</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">JWT</span>
+              </div>
+              <div class="project-card__actions">
+                <a class="btn btn--sm" href="#">Docs</a>
+                <a class="btn btn--sm btn--ghost" href="#">Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-tags="frontend">
+            <img class="project-card__img" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop" alt="Website project thumbnail" />
+            <div class="project-card__body">
+              <h3 class="project-card__title">Portfolio Template</h3>
+              <p class="project-card__desc">SEO-friendly, responsive template with performance budgets and CI checks.</p>
+              <div class="project-card__meta">
+                <span class="tag">Next.js</span>
+                <span class="tag">SSR</span>
+                <span class="tag">Lighthouse</span>
+              </div>
+              <div class="project-card__actions">
+                <a class="btn btn--sm" href="#">Live</a>
+                <a class="btn btn--sm btn--ghost" href="#">Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-tags="design">
+            <img class="project-card__img" src="https://images.unsplash.com/photo-1515343483-9c12a5ff6f0f?q=80&w=800&auto=format&fit=crop" alt="Design system thumbnail" />
+            <div class="project-card__body">
+              <h3 class="project-card__title">Design System</h3>
+              <p class="project-card__desc">Token-driven components, accessibility, and cross-platform consistency.</p>
+              <div class="project-card__meta">
+                <span class="tag">Figma</span>
+                <span class="tag">Tokens</span>
+                <span class="tag">WCAG</span>
+              </div>
+              <div class="project-card__actions">
+                <a class="btn btn--sm" href="#">Preview</a>
+                <a class="btn btn--sm btn--ghost" href="#">Docs</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-tags="backend frontend">
+            <img class="project-card__img" src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=800&auto=format&fit=crop" alt="Fullstack app thumbnail" />
+            <div class="project-card__body">
+              <h3 class="project-card__title">Fullstack Notes</h3>
+              <p class="project-card__desc">Auth, real-time sync, offline support, and automated deployments.</p>
+              <div class="project-card__meta">
+                <span class="tag">TypeScript</span>
+                <span class="tag">Prisma</span>
+                <span class="tag">PWA</span>
+              </div>
+              <div class="project-card__actions">
+                <a class="btn btn--sm" href="#">Live</a>
+                <a class="btn btn--sm btn--ghost" href="#">Code</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="section section--alt">
+      <div class="container">
+        <h2>Experience</h2>
+        <div class="timeline">
+          <div class="timeline__item">
+            <div class="timeline__dot" aria-hidden="true"></div>
+            <div class="timeline__content">
+              <h3>Senior Frontend Engineer — Company A</h3>
+              <p class="timeline__meta">2023 — Present</p>
+              <ul class="list">
+                <li>Led migration to a design system, reducing UI bugs by 40%.</li>
+                <li>Improved performance: LCP -30%, CLS -50% across product.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="timeline__item">
+            <div class="timeline__dot" aria-hidden="true"></div>
+            <div class="timeline__content">
+              <h3>Frontend Engineer — Company B</h3>
+              <p class="timeline__meta">2020 — 2023</p>
+              <ul class="list">
+                <li>Built analytics features used by 50k+ monthly users.</li>
+                <li>Mentored juniors; introduced testing and CI workflows.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>Contact</h2>
+        <div class="grid grid--2">
+          <form id="contactForm" class="form" novalidate>
+            <div class="form__row">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" required />
+              <small class="error" id="nameError"></small>
+            </div>
+            <div class="form__row">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required />
+              <small class="error" id="emailError"></small>
+            </div>
+            <div class="form__row">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="6" placeholder="Tell me about your project" required></textarea>
+              <small class="error" id="messageError"></small>
+            </div>
+            <button class="btn btn--primary" type="submit">Send message</button>
+            <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+
+          <div class="card">
+            <h3>Let’s work together</h3>
+            <p>Whether you need a website, a design system, or performance help, I’d love to hear from you.</p>
+            <ul class="list list--meta">
+              <li><strong>Email:</strong> you@domain.com</li>
+              <li><strong>LinkedIn:</strong> linkedin.com/in/yourname</li>
+              <li><strong>GitHub:</strong> github.com/yourname</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year"></span> Your Name. All rights reserved.</p>
+      <ul class="social">
+        <li><a href="#" aria-label="GitHub">GitHub</a></li>
+        <li><a href="#" aria-label="LinkedIn">LinkedIn</a></li>
+        <li><a href="#" aria-label="Twitter">Twitter</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
