@@ -259,6 +259,11 @@ body {
   border: 1px solid var(--border);
 }
 .btn--sm { padding: 0.45rem 0.75rem; border-radius: 0.6rem; }
+/* Mobile nav open state */
+.nav-links.open {
+  display: flex;
+  flex-direction: column;
+}
 
 /* Chips / Filters */
 .chip {

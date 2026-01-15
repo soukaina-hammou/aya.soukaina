@@ -1,330 +1,606 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Professional portfolio of Your Name" />
-  <title>Your Name — Portfolio</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe | Full Stack Developer</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #0f172a;    /* Dark Blue Background */
+            --secondary-color: #1e293b;  /* Lighter Blue Card Background */
+            --accent-color: #38bdf8;     /* Cyan Accent */
+            --text-light: #f1f5f9;       /* White Text */
+            --text-gray: #94a3b8;        /* Gray Text */
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- NAVIGATION --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.2rem 5%;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content h1 span {
+            color: var(--accent-color);
+        }
+
+        .hero-content h2 {
+            font-size: 2rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+        }
+
+        .typing-text::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            border-radius: 5px;
+            font-weight: 700;
+            transition: var(--transition);
+            border: 2px solid var(--accent-color);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent-color);
+            margin-left: 1rem;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        /* --- SECTIONS GENERAL --- */
+        section {
+            padding: 5rem 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .section-title span {
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        /* --- ABOUT --- */
+        .about-container {
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .about-img {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-gray);
+        }
+
+        /* --- SKILLS --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .skill-card {
+            background-color: var(--secondary-color);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .skill-card i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        /* --- PROJECTS --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-img {
+            height: 200px;
+            background: linear-gradient(45deg, #1e293b, #0f172a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            font-size: 3rem;
+        }
+        
+        /* Placeholder for demo purposes */
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .project-info p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-links a {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .project-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- CONTACT --- */
+        .contact-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .input-group input, .input-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--secondary-color);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 5px;
+            color: var(--text-light);
+            font-family: inherit;
+        }
+
+        .input-group input:focus, .input-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--secondary-color);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .social-icons {
+            margin-bottom: 1rem;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- ANIMATIONS & MEDIA QUERIES --- */
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 50%;
+                height: 100vh;
+                background-color: var(--secondary-color);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in;
+            }
+
+            .nav-links.active {
+                transform: translateX(0%);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content h2 { font-size: 1.5rem; }
+            .btn { width: 100%; margin: 0.5rem 0; text-align: center; }
+            section { padding: 4rem 5%; }
+        }
+        
+        /* Utility for Scroll Animation */
+        .hidden {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s;
+        }
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
-  <!-- Skip link -->
-  <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Header / Navigation -->
-  <header class="header">
-    <div class="container header__inner">
-      <a class="brand" href="#">
-        <span class="brand__logo" aria-hidden="true">◆</span>
-        <span class="brand__text">Your Name</span>
-      </a>
-
-      <button class="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Toggle navigation">
-        <span class="nav-toggle__bar"></span>
-        <span class="nav-toggle__bar"></span>
-        <span class="nav-toggle__bar"></span>
-      </button>
-
-      <nav id="nav" class="nav" aria-label="Primary">
-        <ul class="nav__list">
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li>
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main">
-    <!-- Hero -->
-    <section class="hero" aria-label="Introduction">
-      <div class="container hero__inner">
-        <div class="hero__content">
-          <h1 class="hero__title">Hi, I'm Your Name</h1>
-          <p class="hero__subtitle">I build clean, scalable, and human-centered digital products.</p>
-          <div class="hero__actions">
-            <a class="btn btn--primary" href="#projects">View my work</a>
-            <a class="btn btn--ghost" href="#contact">Get in touch</a>
-          </div>
-          <ul class="hero__meta">
-            <li><strong>Location:</strong> Casablanca-Settat, Morocco</li>
-            <li><strong>Role:</strong> Frontend Engineer</li>
-            <li><strong>Focus:</strong> UX Engineering, Performance</li>
-          </ul>
-        </div>
-        <div class="hero__media" aria-hidden="true">
-          <!-- Replace with your photo -->
-          <div class="avatar">
-            <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=600&auto=format&fit=crop" alt="Portrait of Your Name" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About -->
-    <section id="about" class="section">
-      <div class="container">
-        <h2>About</h2>
-        <div class="grid grid--2">
-          <div>
-            <p>
-              I'm a software engineer specializing in building accessible, performant web applications. I care about thoughtful UX, maintainable systems, and clear communication.
-            </p>
-            <p>
-              I’ve shipped features across startups and enterprises, mentored teammates, and contributed to open-source. My toolkit blends design sense with engineering rigor.
-            </p>
-          </div>
-          <div class="card card--info">
-            <ul class="list list--meta">
-              <li><strong>Current:</strong> Senior Frontend Engineer @ Company</li>
-              <li><strong>Education:</strong> BSc in Computer Science</li>
-              <li><strong>Interests:</strong> Web performance, Design systems</li>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">John<span style="color:white">Doe.</span></a>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
-          </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content hidden">
+            <h1>Hi, I'm <span>John Doe</span></h1>
+            <h2>I am a <span class="typing-text"></span></h2>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn">View Work</a>
+                <a href="#contact" class="btn btn-outline">Contact Me</a>
+            </div>
         </div>
-      </div>
     </section>
 
-    <!-- Skills -->
-    <section id="skills" class="section section--alt">
-      <div class="container">
-        <h2>Skills</h2>
-        <div class="skills">
-          <div class="skill">
-            <div class="skill__header">
-              <span class="skill__name">JavaScript / TypeScript</span>
-              <span class="skill__level">Expert</span>
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title"><span>About Me</span></h2>
+        <div class="about-container hidden">
+            <div class="about-img">
+                <!-- Replace src with your photo -->
+                <img src="https://placehold.co/600x400/1e293b/38bdf8?text=Profile+Image" alt="Profile">
             </div>
-            <div class="progress" aria-label="JavaScript skill level">
-              <div class="progress__bar" style="width: 90%"></div>
+            <div class="about-text">
+                <h3>Building Digital Experiences</h3>
+                <br>
+                <p>I am a passionate Full Stack Developer with 5 years of experience in building modern web applications. I love solving complex problems and turning ideas into reality.</p>
+                <p>My journey started when I wrote my first "Hello World" in Python. Since then, I've worked with various technologies and frameworks to create scalable and efficient solutions.</p>
+                <br>
+                <a href="#" class="btn">Download CV</a>
             </div>
-          </div>
-
-          <div class="skill">
-            <div class="skill__header">
-              <span class="skill__name">React / Next.js</span>
-              <span class="skill__level">Advanced</span>
-            </div>
-            <div class="progress" aria-label="React skill level">
-              <div class="progress__bar" style="width: 85%"></div>
-            </div>
-          </div>
-
-          <div class="skill">
-            <div class="skill__header">
-              <span class="skill__name">CSS / Design Systems</span>
-              <span class="skill__level">Advanced</span>
-            </div>
-            <div class="progress" aria-label="CSS skill level">
-              <div class="progress__bar" style="width: 85%"></div>
-            </div>
-          </div>
-
-          <div class="skill">
-            <div class="skill__header">
-              <span class="skill__name">Node.js</span>
-              <span class="skill__level">Intermediate</span>
-            </div>
-            <div class="progress" aria-label="Node skill level">
-              <div class="progress__bar" style="width: 70%"></div>
-            </div>
-          </div>
         </div>
-      </div>
     </section>
 
-    <!-- Projects -->
-    <section id="projects" class="section">
-      <div class="container">
-        <h2>Projects</h2>
-
-        <!-- Filters -->
-        <div class="filters" role="group" aria-label="Project filters">
-          <button class="chip is-active" data-filter="all">All</button>
-          <button class="chip" data-filter="frontend">Frontend</button>
-          <button class="chip" data-filter="backend">Backend</button>
-          <button class="chip" data-filter="design">Design</button>
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title"><span>My Skills</span></h2>
+        <div class="skills-grid hidden">
+            <div class="skill-card">
+                <i class="fab fa-html5"></i>
+                <h3>HTML5</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-css3-alt"></i>
+                <h3>CSS3</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-js"></i>
+                <h3>JavaScript</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-react"></i>
+                <h3>React</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-node-js"></i>
+                <h3>Node.js</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-database"></i>
+                <h3>SQL / NoSQL</h3>
+            </div>
         </div>
-
-        <div class="grid grid--3 projects">
-          <article class="project-card" data-tags="frontend design">
-            <img class="project-card__img" src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?q=80&w=800&auto=format&fit=crop" alt="Dashboard project thumbnail" />
-            <div class="project-card__body">
-              <h3 class="project-card__title">Analytics Dashboard</h3>
-              <p class="project-card__desc">A modular dashboard with real-time charts, accessible components, and theming.</p>
-              <div class="project-card__meta">
-                <span class="tag">React</span>
-                <span class="tag">D3</span>
-                <span class="tag">Design System</span>
-              </div>
-              <div class="project-card__actions">
-                <a class="btn btn--sm" href="#" aria-label="View live demo of Analytics Dashboard">Live</a>
-                <a class="btn btn--sm btn--ghost" href="#" aria-label="View source code of Analytics Dashboard">Code</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card" data-tags="backend">
-            <img class="project-card__img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop" alt="API project thumbnail" />
-            <div class="project-card__body">
-              <h3 class="project-card__title">Payments API</h3>
-              <p class="project-card__desc">Secure, rate-limited API with OpenAPI docs, testing, and observability.</p>
-              <div class="project-card__meta">
-                <span class="tag">Node</span>
-                <span class="tag">PostgreSQL</span>
-                <span class="tag">JWT</span>
-              </div>
-              <div class="project-card__actions">
-                <a class="btn btn--sm" href="#">Docs</a>
-                <a class="btn btn--sm btn--ghost" href="#">Code</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card" data-tags="frontend">
-            <img class="project-card__img" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop" alt="Website project thumbnail" />
-            <div class="project-card__body">
-              <h3 class="project-card__title">Portfolio Template</h3>
-              <p class="project-card__desc">SEO-friendly, responsive template with performance budgets and CI checks.</p>
-              <div class="project-card__meta">
-                <span class="tag">Next.js</span>
-                <span class="tag">SSR</span>
-                <span class="tag">Lighthouse</span>
-              </div>
-              <div class="project-card__actions">
-                <a class="btn btn--sm" href="#">Live</a>
-                <a class="btn btn--sm btn--ghost" href="#">Code</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card" data-tags="design">
-            <img class="project-card__img" src="https://images.unsplash.com/photo-1515343483-9c12a5ff6f0f?q=80&w=800&auto=format&fit=crop" alt="Design system thumbnail" />
-            <div class="project-card__body">
-              <h3 class="project-card__title">Design System</h3>
-              <p class="project-card__desc">Token-driven components, accessibility, and cross-platform consistency.</p>
-              <div class="project-card__meta">
-                <span class="tag">Figma</span>
-                <span class="tag">Tokens</span>
-                <span class="tag">WCAG</span>
-              </div>
-              <div class="project-card__actions">
-                <a class="btn btn--sm" href="#">Preview</a>
-                <a class="btn btn--sm btn--ghost" href="#">Docs</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card" data-tags="backend frontend">
-            <img class="project-card__img" src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=800&auto=format&fit=crop" alt="Fullstack app thumbnail" />
-            <div class="project-card__body">
-              <h3 class="project-card__title">Fullstack Notes</h3>
-              <p class="project-card__desc">Auth, real-time sync, offline support, and automated deployments.</p>
-              <div class="project-card__meta">
-                <span class="tag">TypeScript</span>
-                <span class="tag">Prisma</span>
-                <span class="tag">PWA</span>
-              </div>
-              <div class="project-card__actions">
-                <a class="btn btn--sm" href="#">Live</a>
-                <a class="btn btn--sm btn--ghost" href="#">Code</a>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
     </section>
 
-    <!-- Experience -->
-    <section id="experience" class="section section--alt">
-      <div class="container">
-        <h2>Experience</h2>
-        <div class="timeline">
-          <div class="timeline__item">
-            <div class="timeline__dot" aria-hidden="true"></div>
-            <div class="timeline__content">
-              <h3>Senior Frontend Engineer — Company A</h3>
-              <p class="timeline__meta">2023 — Present</p>
-              <ul class="list">
-                <li>Led migration to a design system, reducing UI bugs by 40%.</li>
-                <li>Improved performance: LCP -30%, CLS -50% across product.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="timeline__item">
-            <div class="timeline__dot" aria-hidden="true"></div>
-            <div class="timeline__content">
-              <h3>Frontend Engineer — Company B</h3>
-              <p class="timeline__meta">2020 — 2023</p>
-              <ul class="list">
-                <li>Built analytics features used by 50k+ monthly users.</li>
-                <li>Mentored juniors; introduced testing and CI workflows.</li>
-              </ul>
-            </div>
-          </div>
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title"><span>Featured Projects</span></h2>
+        <div class="projects-grid hidden">
+            
+            <!-- Project 1 -->
+            <article class="project-card">
+                <div class="project-img">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="project-info">
+                    <h3>E-Commerce Platform</h3>
+                    <p>A full-featured online store built with React and Node.js. Includes Stripe integration and an admin dashboard.</p>
+                    <div class="project-links">
+                        <a href="#"><i class="fab fa-github"></i> Code</a>
+                        <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 2 -->
+            <article class="project-card">
+                <div class="project-img">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <div class="project-info">
+                    <h3>Chat Application</h3>
+                    <p>Real-time chat app using Socket.io and MongoDB. Features private messaging and group channels.</p>
+                    <div class="project-links">
+                        <a href="#"><i class="fab fa-github"></i> Code</a>
+                        <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 3 -->
+            <article class="project-card">
+                <div class="project-img">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="project-info">
+                    <h3>Finance Tracker</h3>
+                    <p>Visual dashboard for tracking expenses. Built with Vue.js and D3.js for data visualization.</p>
+                    <div class="project-links">
+                        <a href="#"><i class="fab fa-github"></i> Code</a>
+                        <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                    </div>
+                </div>
+            </article>
+
         </div>
-      </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" class="section">
-      <div class="container">
-        <h2>Contact</h2>
-        <div class="grid grid--2">
-          <form id="contactForm" class="form" novalidate>
-            <div class="form__row">
-              <label for="name">Name</label>
-              <input id="name" name="name" type="text" placeholder="Your name" required />
-              <small class="error" id="nameError"></small>
-            </div>
-            <div class="form__row">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="you@example.com" required />
-              <small class="error" id="emailError"></small>
-            </div>
-            <div class="form__row">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="6" placeholder="Tell me about your project" required></textarea>
-              <small class="error" id="messageError"></small>
-            </div>
-            <button class="btn btn--primary" type="submit">Send message</button>
-            <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
-          </form>
-
-          <div class="card">
-            <h3>Let’s work together</h3>
-            <p>Whether you need a website, a design system, or performance help, I’d love to hear from you.</p>
-            <ul class="list list--meta">
-              <li><strong>Email:</strong> you@domain.com</li>
-              <li><strong>LinkedIn:</strong> linkedin.com/in/yourname</li>
-              <li><strong>GitHub:</strong> github.com/yourname</li>
-            </ul>
-          </div>
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title"><span>Get In Touch</span></h2>
+        <div class="contact-container hidden">
+            <form class="contact-form" id="contactForm">
+                <div class="input-group">
+                    <input type="text" placeholder="Name" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <textarea rows="5" placeholder="Message" required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
         </div>
-      </div>
     </section>
-  </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer__inner">
-      <p>© <span id="year"></span> Your Name. All rights reserved.</p>
-      <ul class="social">
-        <li><a href="#" aria-label="GitHub">GitHub</a></li>
-        <li><a href="#" aria-label="LinkedIn">LinkedIn</a></li>
-        <li><a href="#" aria-label="Twitter">Twitter</a></li>
-      </ul>
-    </div>
-  </footer>
+    <!-- Footer -->
+    <footer>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2024 John Doe. All Rights Reserved.</p>
+    </footer>
 
-  <!-- Scripts -->
-  <script src="script.js"></script>
+    <!-- JavaScript -->
+    <script>
+        // 1. Mobile Menu Toggle
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // 2. Typing Effect
+        const textElement = document.querySelector('.typing-text');
+        const texts = ['Full Stack Developer', 'UI/UX Designer', 'Freelancer'];
+        let count = 0;
+        let index = 0;
+        let currentText = '';
+        let letter = '';
+
+        (function type() {
+            if (count === texts.length) {
+                count = 0;
+            }
+            currentText = texts[count];
+            letter = currentText.slice(0, ++index);
+
+            textElement.textContent = letter;
+            if (letter.length === currentText.length) {
+                count++;
+                index = 0;
+                setTimeout(type, 2000); // Wait before deleting/next word
+            } else {
+                setTimeout(type, 100); // Typing speed
+            }
+        })();
+
+        // 3. Scroll Reveal Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                } else {
+                    // Optional: remove class to re-animate when scrolling up
+                    // entry.target.classList.remove('show'); 
+                }
+            });
+        });
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+
+        // 4. Contact Form Handler (Visual only)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you! Your message has been sent.');
+            this.reset();
+        });
+    </script>
 </body>
 </html>
